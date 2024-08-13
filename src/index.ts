@@ -4,8 +4,17 @@ import { dblink } from "./database/connect";
 import { errorMiddleware } from "./utils/errorMiddleware";
 import { router } from "./routes/main-router";
 import cors from "cors";
+import { IUser } from "./models/userModel";
 
 dotenv.config();
+
+declare global {
+  namespace Express {
+    interface Request {
+      user: IUser
+    }
+  }
+}
 
 const PORT: string = process.env.PORT;
 const HOST: string = process.env.HOST;
@@ -22,6 +31,6 @@ async function connections() {
 }
 
 app.listen(Number.parseInt(PORT), HOST, async () => {
-//   await connections();
+  await connections();
   console.log(`listening on ${HOST} ${PORT}`);
 });

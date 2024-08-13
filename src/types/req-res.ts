@@ -1,4 +1,5 @@
-import { Request , Response} from "express";
+import { request, Request , Response} from "express";
+import { IUser } from "../models/userModel";
 
 // interface RequestWithUser extends Request {
 //     user : 
@@ -6,6 +7,14 @@ import { Request , Response} from "express";
 
 export interface ErrorWithResponse extends Error { 
     status : number
+}
+
+export interface RegisterRequest {
+    name : string
+    email : string
+    password : string
+    collegeName : string
+    contactNumber : string
 }
 
 export class ApiResponse{
@@ -27,11 +36,11 @@ export class ApiError extends Error {
     message : string 
     stack : string 
 
-    constructor(status : number , message : string , stack : string){
+    constructor(status : number , message : string , stack : string = ""){
         super(message);
         this.status = status || 500;
         this.message = message;
-        this.stack = stack;
+        this.stack = stack || "";
     }
 
     send_response(res : Response){
@@ -40,4 +49,18 @@ export class ApiError extends Error {
             "stack" : this.stack
         });
     }
+}
+
+export interface UserResponse{
+    name : string, 
+    email : string, 
+    collegeName : string,
+    referralNumber : string,
+    createdAt : Date
+}
+
+export interface ReferralResponse{
+    referralNumber : string,
+    createdAt: Date,
+    referredCount : number
 }

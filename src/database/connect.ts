@@ -14,6 +14,7 @@ class DBconnection{
     }
 
     async connect(){
+        console.log(this.url)
         this.client = await mongoose.connect(this.url, {
             dbName: DBNAME,
         });
