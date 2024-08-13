@@ -52,7 +52,7 @@ export class ApiError extends Error {
 }
 
 export interface UserResponse{
-    name : string, 
+    username : string, 
     email : string, 
     collegeName : string,
     referralNumber : string,

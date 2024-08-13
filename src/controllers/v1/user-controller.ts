@@ -42,7 +42,7 @@ export async function ambassadorRegister(req : Request , res : Response , next :
 
         res.status(201).json({ "token" : token ,
             "referralNumber" : referralNumber,
-            "name" : username
+            "username" : username
         });
     } catch (err) {
         console.log(err);
@@ -79,7 +79,7 @@ export async function ambassadorLogin(req : Request , res : Response , next : Ne
 
         res.status(201).json({ "token" : token ,
             "referralNumber" : user.referralNumber,
-            "name" : user.username
+            "username" : user.username
         });
     } catch (err) {
         console.log(err)
@@ -104,7 +104,7 @@ export async function getUserData(req: Request, res: Response, next: NextFunctio
         }
 
         const userResponse: UserResponse = {
-            name: user.username,
+            username: user.username,
             email: user.email,
             collegeName: user.collegeName,
             referralNumber: user.referralNumber,
